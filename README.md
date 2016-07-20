@@ -11,11 +11,18 @@ gulp + slim + sassで開発できるWordpressのローカル開発環境です�
 1. Run `vagrant up`.
 
 ## データベースのimport・export
-## import
-```
-wp --path=/var/www/wordpress db import /vagrant/import.sql
-```
+データベースの変更があった場合は、エクスポートしてからpushする。
 ##export
 ```
 wp --path=/var/www/wordpress db export /vagrant/import.sql
 ```
+
+pullして、データベースの変更があった場合は、インポートする
+## import
+```
+wp --path=/var/www/wordpress db import /vagrant/import.sql
+```
+
+#Wordmove
+ステージング・本番環境とローカル開発環境を同期する。
+<http://2inc.org/blog/2014/12/09/4512/>  

@@ -6,3 +6,4 @@ Vagrantfile.sample
 Vagrantfile.theme-review
 provision/packaging.sh
 spec
+Movefile

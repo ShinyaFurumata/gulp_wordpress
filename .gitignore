@@ -1,0 +1,15 @@
+.DS_Store
+.bundle
+.idea/
+.vagrant
+Movefile
+vendor
+www
+.vagrant
+Gemfile
+Gemfile.lock
+Rakefile
+Vagrantfile.sample
+Vagrantfile.theme-review
+provision/packaging.sh
+spec

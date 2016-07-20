@@ -24,5 +24,5 @@ wp --path=/var/www/wordpress db import /vagrant/import.sql
 ```
 
 #Wordmove
-ステージング・本番環境とローカル開発環境を同期する。
+ステージング・本番環境とローカル開発環境を同期する。  
 <http://2inc.org/blog/2014/12/09/4512/>  

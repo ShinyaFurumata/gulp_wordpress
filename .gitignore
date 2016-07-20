@@ -7,3 +7,4 @@ Vagrantfile.theme-review
 provision/packaging.sh
 spec
 Movefile
+node_modules

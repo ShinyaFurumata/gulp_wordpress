@@ -1,0 +1,24 @@
+{
+  "name": "gulp_wordpress",
+  "version": "1.0.0",
+  "description": "gulp + slim + sassで開発できるWordpressのローカル開発環境です。",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ShinyaFurumata/gulp_wordpress.git"
+  },
+  "author": "shinyafurumata",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ShinyaFurumata/gulp_wordpress/issues"
+  },
+  "homepage": "https://github.com/ShinyaFurumata/gulp_wordpress#readme",
+  "devDependencies": {
+    "browser-sync": "^2.13.0",
+    "gulp": "^3.9.1",
+    "gulp-plumber": "^1.1.0"
+  }
+}

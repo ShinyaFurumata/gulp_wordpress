@@ -9,15 +9,8 @@ gulp.task("server", function() {
 });
 
 gulp.task('php-reload', function () {
-    gulp.src("src/**/*.php")
-    .pipe(cache( 'php-reload' ))
+    gulp.src("www/**/*.php")
     .pipe(browser.reload({stream:true}))
-    .pipe(notify({
-        title: 'HTMLの変更、ブラウザリロード。',
-        message: new Date(),
-        sound: 'Submarine',
-        icon: 'logo.png'
-    }));
 });
 
 gulp.task('watch', function () {

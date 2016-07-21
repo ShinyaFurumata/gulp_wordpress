@@ -18,6 +18,7 @@ gulp
 
 ## 複数人でwordpress環境共有する(データベースの部分)
 データベースの変更があった場合は、エクスポートしてからpushする。  
+##export
 ```
 wp --path=/var/www/wordpress db export /vagrant/import.sql
 ```

@@ -29,6 +29,9 @@ wp --path=/var/www/wordpress db import /vagrant/import.sql
 ```
 複数人でデータベースをいじると、うまく反映されないかも。  
 
+## 複数個のサイト運用
+`site.yml`のhostnameとipを変える。
+
 # VCCW ( Vagrant + Chef + Wordpress )
 <http://vccw.cc/>
 

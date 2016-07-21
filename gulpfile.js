@@ -28,6 +28,7 @@ gulp.task("default", ['server' , 'watch'] );
 gulp.task('slim', function() {
   gulp.src("./app/views/**/*.slim")
     .pipe(plumber())
+    .pipe(cache( 'slim' ))
     .pipe(slim({
       pretty: true,
     }))

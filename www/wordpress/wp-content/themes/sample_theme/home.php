@@ -3,7 +3,7 @@
   <div class="cf" id="Content">
     <div id="Main">
       <p>
-        これはテストです
+        テスト
       </p>
     </div>
     <?php get_template_part( "side" ); ?>

@@ -29,7 +29,7 @@
   <body>
     <div id="Header">
       <div class="hoge">
-        <a href="<?php echo home_url(); ?>/"></a>hoge
+        <a href="<?php echo home_url(); ?>/"></a>
       </div>
     </div>
     <!--// #Header-->

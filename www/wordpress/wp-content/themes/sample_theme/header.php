@@ -13,17 +13,9 @@
     <!--JS読み込み-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="<?php bloginfo("template_url"); ?>/shared/js/common.js" type="text/javascript"></script>
-    <!--ページ毎のcss振り分け--><?php if(is_home()): ?>
+    <!--ページ毎のcss振り分け-->
     <link href="<?php bloginfo("stylesheet_url"); ?>" media="all" rel="stylesheet" type="text/css" />
-    <?php elseif(is_page( 'service' ) ): ?>
-    <link href="<?php bloginfo("template_url"); ?>/css/service.css" media="all" rel="stylesheet" type="text/css" />
-    <?php elseif(is_page( 'point' ) ): ?>
-    <link href="<?php bloginfo("template_url"); ?>/css/point.css" media="all" rel="stylesheet" type="text/css" />
-    <?php elseif(is_page( 'contact' ) ): ?>
-    <link href="<?php bloginfo("template_url"); ?>/css/contact.css" media="all" rel="stylesheet" type="text/css" />
-    <?php else: ?>
-    <link href="<?php bloginfo("stylesheet_url"); ?>" media="all" rel="stylesheet" type="text/css" />
-    <?php endif; ?><!--[if lt IE 9]
+    <!--[if lt IE 9]
     <script type="text/javascript" src="shared/js/html5shiv.js"></script--><?php wp_head(); ?>
   </head>
   <body>

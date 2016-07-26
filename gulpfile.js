@@ -40,19 +40,20 @@ gulp.task('slim', function() {
 
 /*--------------------- sass [sass] --------------------*/
 gulp.task("sass", function() {
-  gulp.src("./app/stylesheets/application.sass")
+  gulp.src("./app/stylesheets/style.sass")
     .pipe(plumber())
     .pipe(sourcemaps.init())
     .pipe(sass({pretty: true}))
     .pipe(autoprefixer())
     .pipe(sourcemaps.write('./maps'))
-    .pipe(gulp.dest("./www/wordpress/wp-content/themes/sample_theme/css/"))
+    .pipe(gulp.dest("./www/wordpress/wp-content/themes/sample_theme/"))
     .pipe(browser.reload({stream:true}));
     });
 
 gulp.task('watch', function () {
     gulp.watch("www/**/*.slim",["slim-reload"]);
     gulp.watch("./app/views/**/*.slim",["slim"]);
+    gulp.watch("./app/**/*.sass", ['sass']);
 });
 
 gulp.task("default", ['server' , 'watch' , 'slim' , 'sass'] );

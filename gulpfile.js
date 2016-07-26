@@ -13,6 +13,7 @@ var gulpFilter = require('gulp-filter');
 var uglify = require("gulp-uglify");
 var concat = require("gulp-concat");
 var changed  = require('gulp-changed');
+var imagemin = require("gulp-imagemin");
 
 gulp.task("server", function() {
     browser({
@@ -93,12 +94,21 @@ gulp.task("jsmin", function() {
         .pipe(browser.reload({stream:true}))
 });
 
+/*--------------------- image [imagemin] --------------------*/
+gulp.task("imagemin", function() {
+    gulp.src("./app/images/**/*.+(jpg|jpeg|png|gif|svg)")
+        .pipe(changed( './www/wordpress/wp-content/themes/sample_theme/img' ))
+        .pipe(imagemin())
+        .pipe(gulp.dest("./www/wordpress/wp-content/themes/sample_theme/img"));
+});
+
 
 gulp.task('watch', function () {
     gulp.watch("www/**/*.slim",["slim-reload"]);
     gulp.watch("./app/views/**/*.slim",["slim"]);
     gulp.watch("./app/**/*.sass", ['sass']);
     gulp.watch("./app/javascripts/*.js", ['jsmin']);
+    gulp.watch("./app/images/**/*.+(jpg|jpeg|png|gif|svg)", ['imagemin']);
 });
 
-gulp.task("default", ['server' , 'watch' , 'slim' , 'sass' , 'bower'] );
+gulp.task("default", ['server' , 'watch' , 'slim' , 'sass' , 'bower' , 'imagemin'] );

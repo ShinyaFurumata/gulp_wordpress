@@ -8,4 +8,4 @@ provision/packaging.sh
 spec
 Movefile
 node_modules
-bower_install
+bower_components

@@ -8,6 +8,10 @@ var cache = require('gulp-cached');
 var sass = require("gulp-sass");
 var sourcemaps = require('gulp-sourcemaps');
 var autoprefixer = require("gulp-autoprefixer");
+var bower = require('main-bower-files');
+var gulpFilter = require('gulp-filter');
+var uglify = require("gulp-uglify");
+var concat = require("gulp-concat");
 
 gulp.task("server", function() {
     browser({
@@ -18,6 +22,29 @@ gulp.task("server", function() {
 gulp.task('php-reload', function () {
     gulp.src("www/**/*.slim")
     .pipe(browser.reload({stream:true}))
+});
+
+/*--------------------- bower [bower] --------------------*/
+gulp.task('bower', function() {
+  var jsDir = './app/javascripts/',
+      jsFilter = gulpFilter('**/*.js', {restore: true});
+  return gulp.src( bower({
+      paths: {
+        bowerJson: 'bower.json'
+      }
+    }) )
+    .pipe( jsFilter )
+    .pipe( concat('_bundle.js') )
+    .pipe( gulp.dest(jsDir) )
+    .pipe( uglify({
+      // !から始まるコメントを残す
+      preserveComments: 'some'
+    }) )
+    .pipe( rename({
+      extname: '.min.js'
+    }) )
+    .pipe( gulp.dest('./www/wordpress/wp-content/themes/sample_theme/js') )
+    .pipe( jsFilter.restore );
 });
 
 /*--------------------- slim [slim] --------------------*/
@@ -58,4 +85,4 @@ gulp.task('watch', function () {
     gulp.watch("./app/**/*.sass", ['sass']);
 });
 
-gulp.task("default", ['server' , 'watch' , 'slim' , 'sass'] );
+gulp.task("default", ['server' , 'watch' , 'slim' , 'sass' , 'bower'] );

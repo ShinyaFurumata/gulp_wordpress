@@ -5,6 +5,9 @@ var slim = require("gulp-slim");
 var rename = require('gulp-rename');
 var replace = require('gulp-replace');
 var cache = require('gulp-cached');
+var sass = require("gulp-sass");
+var sourcemaps = require('gulp-sourcemaps');
+var autoprefixer = require("gulp-autoprefixer");
 
 gulp.task("server", function() {
     browser({
@@ -16,13 +19,6 @@ gulp.task('php-reload', function () {
     gulp.src("www/**/*.slim")
     .pipe(browser.reload({stream:true}))
 });
-
-gulp.task('watch', function () {
-    gulp.watch("www/**/*.slim",["slim-reload"]);
-    gulp.watch("./app/views/**/*.slim",["slim"]);
-});
-
-gulp.task("default", ['server' , 'watch'] );
 
 /*--------------------- slim [slim] --------------------*/
 gulp.task('slim', function() {
@@ -41,3 +37,22 @@ gulp.task('slim', function() {
     .pipe(gulp.dest('./www/wordpress/wp-content/themes/sample_theme/'))
     .pipe(browser.reload({stream:true}));
 });
+
+/*--------------------- sass [sass] --------------------*/
+gulp.task("sass", function() {
+  gulp.src("./app/stylesheets/application.sass")
+    .pipe(plumber())
+    .pipe(sourcemaps.init())
+    .pipe(sass({pretty: true}))
+    .pipe(autoprefixer())
+    .pipe(sourcemaps.write('./maps'))
+    .pipe(gulp.dest("./www/wordpress/wp-content/themes/sample_theme/css/"))
+    .pipe(browser.reload({stream:true}));
+    });
+
+gulp.task('watch', function () {
+    gulp.watch("www/**/*.slim",["slim-reload"]);
+    gulp.watch("./app/views/**/*.slim",["slim"]);
+});
+
+gulp.task("default", ['server' , 'watch' , 'slim' , 'sass'] );

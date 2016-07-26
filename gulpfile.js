@@ -27,6 +27,8 @@ gulp.task('slim', function() {
     .pipe(cache( 'slim' ))
     .pipe(slim({
       pretty: true,
+      require: 'slim/include',
+      options: 'include_dirs=["./app/views/partial"]'
     }))
     .pipe(rename({
       extname: '.php'

@@ -1,15 +1,9 @@
 #gulp_wordpress
-gulp + slim + sassで開発できるWordpressのローカル開発環境。  
-VMには、VCCW(Vagrant + Chef + Wordpress)を使い、ローカル開発環境を一通り用意する。  
+gulp + slim + sassで開発できるWordpressのローカル開発環境です。  
+VCCW(Vagrant + Chef + Wordpress)を使ってWordpress環境を構築し、slim , sassのコンパイル等はgulpで処理しています。  
 
 # ディレクトリ
 ```
-・gulpfile.js	Gulpタスクを記入
-・package.json	npmでインストールするパッケージ書いてある
-・bowerJson bowerでインストールするパッケージが書いてある
-・csscomb.json cssのプロパティのソート順、吐き出すcssのスタイル設定
-・gitattributes gitの設定。cssがコンフリクトしないように、バイナリ化してある
-・gitignore node_modules , bower_components , wordpress , wiki(自分用)はgitから除外
 ・app	開発用のディレクトリ
 　├・images	imgファイル→圧縮されてpublic/imgへ
 　│　├ _common 共通で使用するimgファイル
@@ -34,12 +28,14 @@ VMには、VCCW(Vagrant + Chef + Wordpress)を使い、ローカル開発環境�
 　　　├・under 下層ページ用のslimを入れるディレクトリ（自動生成に使うから、消さない）
 　　　└・index.slim top用のslim
 ・www	wordpress一式（appで実装されたものは、/www/wordpress/wp-content/themes/sample_theme にある）
-・provision　Wordpressの環境構築用(cookbook)
-・gitignore
-・import.sql　データベースをエクスポートしたもの
-・package.json
-・site.yml　Vagrant, Wordpressの設定ファイル
-・Vagrantfile
+・provision　Wordpressの環境構築用(cookbook)  
+・gitignore  
+・import.sql　データベースをエクスポートしたもの  
+・site.yml　Vagrant, Wordpressの設定ファイル  
+・Vagrantfile  
+・gulpfile.js  
+・package.json  
+・bower.json  
 
 ```
 
@@ -48,22 +44,25 @@ VMには、VCCW(Vagrant + Chef + Wordpress)を使い、ローカル開発環境�
 ```
 vagrant up
 ```
-1. npmパッケージをインストール
+2. npmパッケージをインストール
 ```
 npm instal
 ```
-1. bowerパッケージをインストール
+3. bowerパッケージをインストール
 ```
 bower instal
 ```
-1. 開発環境立ち上げ
+4. 開発環境立ち上げ
 ```
 gulp
 ```
 
-# gulpの機能一覧
+※開発を終了する場合は、  
+「Ctrl + c」でgulpを終了し、  
+`vagrant halt`でVMを終了させる。
+
+# gulpのwatchタスク
 - browser-sync(Live reload)  
-- bower  
 - slim  
 - sass  
 - js圧縮  
@@ -71,13 +70,13 @@ gulp
 
 # メモ
 ## 複数人でwordpress環境を共有する場合のGit運用(データベースを含めて)
-##export
+### export
 データベースの変更があった場合は、下記のコードでデータベースをエクスポートしてから`git push`する。  
 ```
 wp --path=/var/www/wordpress db export /vagrant/import.sql
 ```
 
-## import
+### import
 `git pull`して、データベースの変更があった場合は、下記コードでデータベースをインポートする
 ```
 wp --path=/var/www/wordpress db import /vagrant/import.sql

@@ -12,6 +12,7 @@ var bower = require('main-bower-files');
 var gulpFilter = require('gulp-filter');
 var uglify = require("gulp-uglify");
 var concat = require("gulp-concat");
+var changed  = require('gulp-changed');
 
 gulp.task("server", function() {
     browser({
@@ -79,10 +80,25 @@ gulp.task("sass", function() {
     .pipe(browser.reload({stream:true}));
     });
 
+/*--------------------- JavaScript [jsmin] --------------------*/
+gulp.task("jsmin", function() {
+    gulp.src("./app/javascripts/*.js")
+        .pipe(changed( 'jsmin' ))
+        .pipe(plumber())
+        .pipe(uglify())
+        .pipe( rename({
+          extname: '.min.js'
+        }) )
+        .pipe(gulp.dest("./www/wordpress/wp-content/themes/sample_theme/js/"))
+        .pipe(browser.reload({stream:true}))
+});
+
+
 gulp.task('watch', function () {
     gulp.watch("www/**/*.slim",["slim-reload"]);
     gulp.watch("./app/views/**/*.slim",["slim"]);
     gulp.watch("./app/**/*.sass", ['sass']);
+    gulp.watch("./app/javascripts/*.js", ['jsmin']);
 });
 
 gulp.task("default", ['server' , 'watch' , 'slim' , 'sass' , 'bower'] );

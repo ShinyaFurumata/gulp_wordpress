@@ -7,7 +7,7 @@
       <div class="cf" id="Content">
         <div id="Main">
           <p>
-            テストイ
+            これはhome.phpのテキストです。
           </p>
         </div>
       </div>
